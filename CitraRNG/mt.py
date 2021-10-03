@@ -1,7 +1,7 @@
 from util import uint
 
 class MT:
-    def __init__(self, seed):
+    def __init__(self, seed: int):
         self.mt = []
         self.index = 0
         self.seed = seed

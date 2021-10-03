@@ -1,6 +1,6 @@
 import threading
 import time
-from PySide6.QtCore import QObject, QSettings, Signal, Slot
+from PySide6.QtCore import QSettings, Signal, Slot
 from PySide6.QtWidgets import QMainWindow, QMessageBox
 from ui_MainWindow import Ui_MainWindow
 from manager_oras import ManagerORAS
@@ -129,7 +129,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.labelStatus.setText("Disconnected")
             self.comboBoxGameSelection.setEnabled(True)      
 
-    def toggleEnable(self, flag, index):
+    def toggleEnable(self, flag: bool, index: int):
         self.doubleSpinBoxDelay.setEnabled(flag)
 
         if index == 0 or index == 1:

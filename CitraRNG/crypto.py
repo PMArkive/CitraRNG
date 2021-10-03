@@ -1,42 +1,43 @@
 import struct
 from util import uint
 
-blockPosition = [ 0, 1, 2, 3,
-    0, 1, 3, 2,
-    0, 2, 1, 3,
-    0, 3, 1, 2,
-    0, 2, 3, 1,
-    0, 3, 2, 1,
-    1, 0, 2, 3,
-    1, 0, 3, 2,
-    2, 0, 1, 3,
-    3, 0, 1, 2,
-    2, 0, 3, 1,
-    3, 0, 2, 1,
-    1, 2, 0, 3,
-    1, 3, 0, 2,
-    2, 1, 0, 3,
-    3, 1, 0, 2,
-    2, 3, 0, 1,
-    3, 2, 0, 1,
-    1, 2, 3, 0,
-    1, 3, 2, 0,
-    2, 1, 3, 0,
-    3, 1, 2, 0,
-    2, 3, 1, 0,
-    3, 2, 1, 0,
+blockPosition = [0, 1, 2, 3,
+                 0, 1, 3, 2,
+                 0, 2, 1, 3,
+                 0, 3, 1, 2,
+                 0, 2, 3, 1,
+                 0, 3, 2, 1,
+                 1, 0, 2, 3,
+                 1, 0, 3, 2,
+                 2, 0, 1, 3,
+                 3, 0, 1, 2,
+                 2, 0, 3, 1,
+                 3, 0, 2, 1,
+                 1, 2, 0, 3,
+                 1, 3, 0, 2,
+                 2, 1, 0, 3,
+                 3, 1, 0, 2,
+                 2, 3, 0, 1,
+                 3, 2, 0, 1,
+                 1, 2, 3, 0,
+                 1, 3, 2, 0,
+                 2, 1, 3, 0,
+                 3, 1, 2, 0,
+                 2, 3, 1, 0,
+                 3, 2, 1, 0,
 
-    # duplicates of 0-7 to eliminate modulus
-    0, 1, 2, 3,
-    0, 1, 3, 2,
-    0, 2, 1, 3,
-    0, 3, 1, 2,
-    0, 2, 3, 1,
-    0, 3, 2, 1,
-    1, 0, 2, 3,
-    1, 0, 3, 2 ]
+                 # duplicates of 0-7 to eliminate modulus
+                 0, 1, 2, 3,
+                 0, 1, 3, 2,
+                 0, 2, 1, 3,
+                 0, 3, 1, 2,
+                 0, 2, 3, 1,
+                 0, 3, 2, 1,
+                 1, 0, 2, 3,
+                 1, 0, 3, 2]
 
-def decryptArray(encryptedData):
+
+def decryptArray(encryptedData: bytes):
     pv = struct.unpack("<I", encryptedData[0x0:0x4])[0]
     sv = (pv >> 13) & 31
 
@@ -46,7 +47,8 @@ def decryptArray(encryptedData):
 
     return data
 
-def cryptArray(data, seed, start, end):
+
+def cryptArray(data: bytes, seed: int, start: int, end: int):
     result = bytes()
 
     step = seed
@@ -62,7 +64,8 @@ def cryptArray(data, seed, start, end):
 
     return result
 
-def crypt(data, seed):
+
+def crypt(data: bytes, seed: int):
     value = data[0]
     value ^= (seed & 0xFF)
     result = struct.pack("B", value)
@@ -73,7 +76,8 @@ def crypt(data, seed):
 
     return result
 
-def shuffleArray(data, sv):
+
+def shuffleArray(data: bytes, sv: int):
     index = sv * 4
     result = bytes()
 

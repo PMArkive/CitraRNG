@@ -29,7 +29,7 @@ class Manager6:
     def getOffsets(self):
         pass
 
-    def partyPokemon(self, index):
+    def partyPokemon(self, index: int):
         address = self.partyAddress + (index * 484)
 
         blockData = self.citra.read_memory(address, 232)

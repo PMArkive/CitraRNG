@@ -32,7 +32,7 @@ class Manager7:
     def getOffsets(self):
         pass
             
-    def partyPokemon(self, index):
+    def partyPokemon(self, index: int):
         address = self.partyAddress + (index * 484)
 
         blockData = self.citra.read_memory(address, 232)
@@ -50,7 +50,7 @@ class Manager7:
 
         return Pokemon(data)
 
-    def getParent(self, num):
+    def getParent(self, num: int):
         if num == 1:
             address = self.parent1Address
         else:
@@ -106,7 +106,7 @@ class Manager7:
 
         return (seed2 << 32) | seed1
 
-    def sosPokemon(self, index):
+    def sosPokemon(self, index: int):
         address = self.sosAddress + (index * 484)
 
         blockData = self.citra.read_memory(address, 232)

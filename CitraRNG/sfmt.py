@@ -1,7 +1,7 @@
 from util import uint
 
 class SFMT:
-    def __init__(self, seed):
+    def __init__(self, seed: int):
         self.sfmt = []
         self.index = 624
         self.seed = seed
