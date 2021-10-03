@@ -616,7 +616,7 @@ class Ui_MainWindow(object):
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"CitraRNG 3.1.0", None))
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"CitraRNG 3.2.0", None))
         self.groupBoxConnection.setTitle(QCoreApplication.translate("MainWindow", u"Connection", None))
         self.pushButtonConnect.setText(QCoreApplication.translate("MainWindow", u"Connect", None))
         self.labelUpdateDelay.setText(QCoreApplication.translate("MainWindow", u"Auto update delay(seconds):", None))
