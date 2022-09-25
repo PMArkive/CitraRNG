@@ -1,6 +1,7 @@
 import lookup
 from crypto import decryptArray
-from util import convertByte, convertWord, convertDWord
+from util import convertByte, convertDWord, convertWord
+
 
 class Pokemon:
     def __init__(self, data: bytes, flag: bool = True):
@@ -51,31 +52,31 @@ class Pokemon:
 
     def EVHP(self):
         return convertByte(self.data, 0x1E)
-    
+
     def EVAtk(self):
         return convertByte(self.data, 0x1F)
-    
+
     def EVDef(self):
         return convertByte(self.data, 0x20)
-    
+
     def EVSpA(self):
         return convertByte(self.data, 0x22)
-    
+
     def EVSpD(self):
         return convertByte(self.data, 0x23)
-    
+
     def EVSpe(self):
         return convertByte(self.data, 0x21)
 
     def move1(self):
         return lookup.moves[convertWord(self.data, 0x5A)]
-    
+
     def move2(self):
         return lookup.moves[convertWord(self.data, 0x5C)]
-    
+
     def move3(self):
         return lookup.moves[convertWord(self.data, 0x5E)]
-    
+
     def move4(self):
         return lookup.moves[convertWord(self.data, 0x60)]
 
@@ -96,19 +97,19 @@ class Pokemon:
 
     def IVHP(self):
         return self.IV32() & 0x1F
-    
+
     def IVAtk(self):
         return (self.IV32() >> 5) & 0x1F
-    
+
     def IVDef(self):
         return (self.IV32() >> 10) & 0x1F
-    
+
     def IVSpA(self):
         return (self.IV32() >> 20) & 0x1F
-    
+
     def IVSpD(self):
         return (self.IV32() >> 25) & 0x1F
-    
+
     def IVSpe(self):
         return (self.IV32() >> 15) & 0x1F
 
@@ -141,18 +142,18 @@ class Pokemon:
 
     def HP(self):
         return convertWord(self.data, 0xF2)
-    
+
     def Atk(self):
         return convertWord(self.data, 0xF4)
-    
+
     def Def(self):
         return convertWord(self.data, 0xF6)
-    
+
     def SpA(self):
         return convertWord(self.data, 0xFA)
-    
+
     def SpD(self):
         return convertWord(self.data, 0xFC)
-    
+
     def Spe(self):
         return convertWord(self.data, 0xF8)

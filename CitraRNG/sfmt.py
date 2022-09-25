@@ -1,5 +1,6 @@
 from util import uint
 
+
 class SFMT:
     def __init__(self, seed: int):
         self.sfmt = []
@@ -53,10 +54,14 @@ class SFMT:
         c = 616
         d = 620
         while a < 624:
-            self.sfmt[a + 3] = self.sfmt[a + 3] ^ (uint(self.sfmt[a + 3] << 8)) ^ (self.sfmt[a + 2] >> 24) ^ (self.sfmt[c + 3] >> 8) ^ ((self.sfmt[b + 3] >> 11) & 0xbffffff6) ^ (uint(self.sfmt[d + 3] << 18))
-            self.sfmt[a + 2] = self.sfmt[a + 2] ^ (uint(self.sfmt[a + 2] << 8)) ^ (self.sfmt[a + 1] >> 24) ^ (uint(self.sfmt[c + 3] << 24)) ^ (self.sfmt[c + 2] >> 8) ^ ((self.sfmt[b + 2] >> 11) & 0xbffaffff) ^ (uint(self.sfmt[d + 2] << 18))
-            self.sfmt[a + 1] = self.sfmt[a + 1] ^ (uint(self.sfmt[a + 1] << 8)) ^ (self.sfmt[a] >> 24) ^ (uint(self.sfmt[c + 2] << 24)) ^ (self.sfmt[c + 1] >> 8) ^ ((self.sfmt[b + 1] >> 11) & 0xddfecb7f) ^ (uint(self.sfmt[d + 1] << 18))
-            self.sfmt[a] = self.sfmt[a] ^ (uint(self.sfmt[a] << 8)) ^ (uint(self.sfmt[c + 1] << 24)) ^ (self.sfmt[c] >> 8) ^ ((self.sfmt[b] >> 11) & 0xdfffffef) ^ (uint(self.sfmt[d] << 18))
+            self.sfmt[a + 3] = self.sfmt[a + 3] ^ (uint(self.sfmt[a + 3] << 8)) ^ (self.sfmt[a + 2] >> 24) ^ (
+                self.sfmt[c + 3] >> 8) ^ ((self.sfmt[b + 3] >> 11) & 0xbffffff6) ^ (uint(self.sfmt[d + 3] << 18))
+            self.sfmt[a + 2] = self.sfmt[a + 2] ^ (uint(self.sfmt[a + 2] << 8)) ^ (self.sfmt[a + 1] >> 24) ^ (uint(
+                self.sfmt[c + 3] << 24)) ^ (self.sfmt[c + 2] >> 8) ^ ((self.sfmt[b + 2] >> 11) & 0xbffaffff) ^ (uint(self.sfmt[d + 2] << 18))
+            self.sfmt[a + 1] = self.sfmt[a + 1] ^ (uint(self.sfmt[a + 1] << 8)) ^ (self.sfmt[a] >> 24) ^ (uint(self.sfmt[c + 2] << 24)) ^ (
+                self.sfmt[c + 1] >> 8) ^ ((self.sfmt[b + 1] >> 11) & 0xddfecb7f) ^ (uint(self.sfmt[d + 1] << 18))
+            self.sfmt[a] = self.sfmt[a] ^ (uint(self.sfmt[a] << 8)) ^ (uint(self.sfmt[c + 1] << 24)) ^ (
+                self.sfmt[c] >> 8) ^ ((self.sfmt[b] >> 11) & 0xdfffffef) ^ (uint(self.sfmt[d] << 18))
             c = d
             d = a
             a += 4

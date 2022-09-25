@@ -1,11 +1,12 @@
 from util import uint
 
+
 class MT:
     def __init__(self, seed: int):
         self.mt = []
         self.index = 0
         self.seed = seed
-        self.mag01 = [ 0x0, 0x9908B0DF ]
+        self.mag01 = (0x0, 0x9908b0df)
         self.initialize()
 
     def getInitialSeed(self):
@@ -15,7 +16,7 @@ class MT:
         self.mt.append(self.seed)
 
         for i in range(1, 624):
-            y = 0x6C078965 * (self.mt[i - 1] ^ (self.mt[i - 1] >> 30)) + i
+            y = 0x6c078965 * (self.mt[i - 1] ^ (self.mt[i - 1] >> 30)) + i
             self.mt.append(uint(y))
 
     def nextUInt(self):
@@ -27,22 +28,22 @@ class MT:
 
         # Results are stored untempered in memory
         #y ^= (y >> 11)
-        #y ^= (y << 7) & 0x9D2C5680
-        #y ^= (y << 15) & 0xEFC60000
+        #y ^= (y << 7) & 0x9d2c5680
+        #y ^= (y << 15) & 0xefc60000
         #y ^= (y >> 18)
 
         return y
 
     def shuffle(self):
         for i in range(227):
-            y = (self.mt[i] & 0x80000000) | (self.mt[i + 1] & 0x7FFFFFFF)
+            y = (self.mt[i] & 0x80000000) | (self.mt[i + 1] & 0x7fffffff)
             self.mt[i] = self.mt[i + 397] ^ (y >> 1) ^ self.mag01[y & 1]
 
         for i in range(227, 623):
-            y = (self.mt[i] & 0x80000000) | (self.mt[i + 1] & 0x7FFFFFFF)
-            self.mt[i] = self.mt[i -227] ^ (y >> 1) ^ self.mag01[y & 1]
+            y = (self.mt[i] & 0x80000000) | (self.mt[i + 1] & 0x7fffffff)
+            self.mt[i] = self.mt[i - 227] ^ (y >> 1) ^ self.mag01[y & 1]
 
-        y = (self.mt[623] & 0x80000000) | (self.mt[0] & 0x7FFFFFFF)
+        y = (self.mt[623] & 0x80000000) | (self.mt[0] & 0x7fffffff)
         self.mt[623] = self.mt[396] ^ (y >> 1) ^ self.mag01[y & 1]
 
         self.index = 0

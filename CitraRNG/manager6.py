@@ -1,7 +1,8 @@
 from citra import Citra
-from pokemon import Pokemon
 from mt import MT
-from util import readByte, readDWord
+from pokemon import Pokemon
+from util import readDWord
+
 
 class Manager6:
     def __init__(self):

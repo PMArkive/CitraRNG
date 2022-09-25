@@ -1,10 +1,12 @@
 from PySide6.QtWidgets import QWidget
-from ui_PokemonDisplay import Ui_PokemonDisplay
+
 from pokemon import Pokemon
+from ui_PokemonDisplay import Ui_PokemonDisplay
 from util import colorIV, colorPSV
 
+
 class PokemonDisplay(QWidget, Ui_PokemonDisplay):
-    def __init__(self, parent = None):
+    def __init__(self, parent=None):
         super(PokemonDisplay, self).__init__(parent)
         self.setupUi(self)
 
@@ -17,7 +19,7 @@ class PokemonDisplay(QWidget, Ui_PokemonDisplay):
         self.labelSVValue.setText(f"PSV/TSV: {colorPSV(pkm.PSV(), pkm.TSV())}/{pkm.TSV()}")
         self.labelHiddenPowerValue.setText(pkm.hiddenPower())
         self.labelFriendshipValue.setText(str(pkm.currentFriendship()))
-        
+
         self.labelHP.setText(f"HP: {pkm.HPCurrent()}/{pkm.HP()}")
         self.labelAtk.setText(f"Atk: {pkm.Atk()}")
         self.labelDef.setText(f"Def: {pkm.Def()}")
@@ -36,7 +38,7 @@ class PokemonDisplay(QWidget, Ui_PokemonDisplay):
         self.labelSpAEV.setText(f"EV: {pkm.EVSpA()}")
         self.labelSpDEV.setText(f"EV: {pkm.EVSpD()}")
         self.labelSpeEV.setText(f"EV: {pkm.EVSpe()}")
-    
+
         self.labelMove1Name.setText(pkm.move1())
         self.labelMove2Name.setText(pkm.move2())
         self.labelMove3Name.setText(pkm.move3())

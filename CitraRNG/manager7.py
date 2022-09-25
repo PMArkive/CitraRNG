@@ -3,6 +3,7 @@ from pokemon import Pokemon
 from sfmt import SFMT
 from util import readByte, readDWord
 
+
 class Manager7:
     def __init__(self):
         self.citra = Citra()
@@ -31,7 +32,7 @@ class Manager7:
 
     def getOffsets(self):
         pass
-            
+
     def partyPokemon(self, index: int):
         address = self.partyAddress + (index * 484)
 
@@ -80,7 +81,7 @@ class Manager7:
 
         return self.initialSeed
 
-    def updateFrameCount(self):        
+    def updateFrameCount(self):
         currSeed = self.getCurrentSeed()
         difference = self.frameCount
         count = 0
@@ -123,7 +124,7 @@ class Manager7:
 
         return self.sosInitialSeed
 
-    def updateSOSFrameCount(self):        
+    def updateSOSFrameCount(self):
         currSeed = self.getSOSCurrentSeed()
         difference = self.sosFrameCount
         count = 0
@@ -137,8 +138,8 @@ class Manager7:
 
             # Probably stuck in an infinite loop
             if count > 100000:
-                return None            
-            
+                return None
+
         self.sosFrameCount += count
         difference = self.sosFrameCount - difference
         return difference, self.sosInitialSeed, self.sosCurrentSeed, self.sosFrameCount, self.sosChainCount()

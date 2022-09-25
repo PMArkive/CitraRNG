@@ -1,18 +1,21 @@
 import threading
 import time
+
 from PySide6.QtCore import QSettings, Signal, Slot
 from PySide6.QtWidgets import QMainWindow, QMessageBox
-from ui_MainWindow import Ui_MainWindow
+
 from manager_oras import ManagerORAS
 from manager_sm import ManagerSM
 from manager_usum import ManagerUSUM
 from manager_xy import ManagerXY
+from ui_MainWindow import Ui_MainWindow
 from util import hexify
+
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     update = Signal()
 
-    def __init__(self, parent = None):
+    def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
         self.loadSettings()
@@ -25,7 +28,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.eggParent1_7.setTitle("Parent 1")
         self.eggParent2_7.setTitle("Parent 2")
         self.sosPokemon.setTitle("SOS Pokemon")
-        
+
         self.pushButtonConnect.clicked.connect(self.connectCitra)
         self.doubleSpinBoxDelay.valueChanged.connect(self.updateDelay)
         self.comboBoxGameSelection.currentIndexChanged.connect(self.updateGame)
@@ -41,7 +44,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.pushButtonEggUpdate7.clicked.connect(self.toggleEggRNG7)
         self.pushButtonSOSUpdate.clicked.connect(self.toggleSOSRNG)
         self.pushButtonSOSReset.clicked.connect(self.resetSOSRNG)
-        
+
         self.mainPokemon7.pushButtonUpdate.clicked.connect(self.updateMainPokemon7)
         self.eggParent1_7.pushButtonUpdate.clicked.connect(self.updateEggParent1_7)
         self.eggParent2_7.pushButtonUpdate.clicked.connect(self.updateEggParent2_7)
@@ -92,7 +95,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.mainRNG = False
             self.eggRNG = False
             self.sosRNG = False
-            
+
             if index == 0 or index == 1:
                 self.update.connect(self.updateMainRNG6)
                 self.update.connect(self.updateEggRNG6)
@@ -127,7 +130,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.pushButtonSOSUpdate.setText("Update")
 
             self.labelStatus.setText("Disconnected")
-            self.comboBoxGameSelection.setEnabled(True)      
+            self.comboBoxGameSelection.setEnabled(True)
 
     def toggleEnable(self, flag: bool, index: int):
         self.doubleSpinBoxDelay.setEnabled(flag)
@@ -171,7 +174,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 return
 
             difference, initialSeed, currentSeed, frameCount, save, tiny3, tiny2, tiny1, tiny0 = values
-            
+
             # Check to see if frame changed at all
             if difference != 0:
                 self.lineEditInitialSeed6.setText(hexify(initialSeed))
@@ -271,7 +274,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if self.sosRNG:
             if self.manager.sosInitialSeed is None:
                 self.manager.readSOSInitialSeed()
-            
+
             values = self.manager.updateSOSFrameCount()
 
             # Handle infinite loop
@@ -282,7 +285,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
                 self.toggleSOSRNG()
                 return
-            
+
             difference, initialSeed, currentSeed, frameCount, chainCount = values
 
             # Check to see if frame changed at all
@@ -303,7 +306,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     @Slot()
     def resetSOSRNG(self):
         self.manager.sosInitialSeed = None
-        
+
     def updateMainPokemon6(self):
         index = self.comboBoxMainIndex6.currentIndex()
 

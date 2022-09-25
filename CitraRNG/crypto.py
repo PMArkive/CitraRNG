@@ -1,4 +1,5 @@
 import struct
+
 from util import uint
 
 blockPosition = [0, 1, 2, 3,
@@ -57,7 +58,7 @@ def cryptArray(data: bytes, seed: int, start: int, end: int):
         result += crypt(data[i:i+2], step >> 16)
 
     step = seed
-    if (len(data) > end):
+    if len(data) > end:
         for i in range(end, len(data), 2):
             step = uint(step * 0x41C64E6D + 0x6073)
             result += crypt(data[i:i+2], step >> 16)
