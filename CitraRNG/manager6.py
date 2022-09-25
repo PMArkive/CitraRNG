@@ -40,16 +40,13 @@ class Manager6:
         return Pokemon(data)
 
     def wildPokemon(self):
-        address = self.getWildOffset()
+        address = self.wildAddress
 
         blockData = self.citra.read_memory(address, 232)
         statsData = self.citra.read_memory(address + 344, 22)
         data = blockData + statsData
 
         return Pokemon(data)
-
-    def getWildOffset(self):
-        pass
 
     def getParent(self, num):
         address = self.parent1Address if num == 1 else self.parent2Address

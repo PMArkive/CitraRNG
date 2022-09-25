@@ -8,6 +8,7 @@ class ManagerXY(Manager6):
 
     def getOffsets(self):
         self.partyAddress = 0x8ce1cf8
+        self.wildAddress = 0x81ff744
 
         self.initialSeed = None
         self.seedAddress = 0x8c52844
@@ -22,14 +23,3 @@ class ManagerXY(Manager6):
         self.parent2Address = 0x8c8003c
 
         self.saveVariable = 0x8c6a6a4
-
-    def getWildOffset(self):
-        pointer = readDWord(self.citra, 0x880313c) - 0xA1C
-        if pointer < 0x8000000 or pointer > 0x8DF0000:
-            return 0x8805614
-        else:
-            pointer = readDWord(self.citra, pointer)
-            if pointer < 0x8000000 or pointer > 0x8DF0000:
-                return 0x8805614
-            else: 
-                return pointer
