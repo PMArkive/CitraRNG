@@ -12,11 +12,11 @@ from ui_MainWindow import Ui_MainWindow
 from util import hexify
 
 
-class MainWindow(QMainWindow, Ui_MainWindow):
+class MainWindow(Ui_MainWindow, QMainWindow):
     update = Signal()
 
     def __init__(self, parent=None):
-        super(MainWindow, self).__init__(parent)
+        super().__init__(parent)
         self.setupUi(self)
         self.loadSettings()
 
